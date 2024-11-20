@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align='Center'> :exclamation: Chinese Figurines Store  :exclamation: </h1>
 
-## Getting Started
+Design available in Figma  
+https://www.figma.com/design/WXB3xfYaTXFRmtQrJwB5EJ/Pagina-De-Ventas?t=nWYKkYoSfx4XJMXA-1  
 
-First, run the development server:
+Logic raised in Miro  
+https://miro.com/welcomeonboard/QWErSEFQZjQ5ZmRxaXFUVGRMRkpoQjRYMzg1VEFpbjlxNkt3MEJlMmVubW9NZEdVN3VGSkgvM1pybmRQTEpuWVlPSUUwOUgxbVRjOU96K1JEMVh2eE1ob3lTaEExQ0Fmd0FoaDZHb2YyL2tVTy80TFdaWk9rQkZMdHRmQ1E4RVohZQ==?share_link_id=966419314358
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+>[!IMPORTANT]
+>Designs and project logic are likely to change.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<h1 align= 'Center'> About the project </h1>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<h2 align='Center'>
+The project arose from a colleague's interest in anime figures. Its structure is designed following the basic standards of current shopping platforms, to guarantee an intuitive and functional experience for users.
+</h2>
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+<h1 align='Center'>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  Technologies  
+  
+  ![My Skills](https://skillicons.dev/icons?i=js,aws,figma,docker,jenkins,nodejs,php,nextjs,git,github)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<h1>
