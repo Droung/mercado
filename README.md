@@ -13,7 +13,7 @@ https://miro.com/welcomeonboard/QWErSEFQZjQ5ZmRxaXFUVGRMRkpoQjRYMzg1VEFpbjlxNkt3
 <h1 align= 'Center'> About the project </h1>
 
 <h2 align='Center'>
-The project arose from a colleague's interest in anime figures. Its structure is designed following the basic standards of current shopping platforms, to guarantee an intuitive and functional experience for users.
+The project arose from a colleague's interest in anime figures. Its structure is designed following the basic standards of current shopping platforms, to guarantee an intuitive and functional experience for users hector miente.
 </h2>
 
 
