@@ -21,6 +21,6 @@ The project arose from a colleague's interest in anime figures. Its structure is
 
   Technologies  
   
-  ![My Skills](https://skillicons.dev/icons?i=js,aws,figma,docker,jenkins,nodejs,php,nextjs,git,github)
+  ![My Skills](https://skillicons.dev/icons?i=js,aws,figma,docker,jenkins,nodejs,php,nextjs,git,github,tailwind)
 
 <h1>
