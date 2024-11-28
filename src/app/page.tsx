@@ -1,7 +1,11 @@
 import Image from "next/image";
+import  Header  from "next/dist/lib/load-custom-routes";
 
 export default function Home() {
   return (
-    <h1>Raiz</h1>
+    <div>
+      
+    </div>
+    
   );
 }
