@@ -1,21 +1,28 @@
+/* globals.css */
+
+/* Importar las directivas base de Tailwind CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Estilos personalizados */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-mercado-beige text-gray-800; /* Fondo de la página */
+  font-family: 'Helvetica', 'Arial', sans-serif; /* Fuente general */
+}
+
+input[type="text"] {
+  @apply px-4 py-2 rounded w-full outline-none focus:ring-2 focus:ring-mercado-brown;
+}
+
+button {
+  @apply px-4 py-2 rounded bg-black text-white hover:bg-gray-700 transition-colors duration-200;
+}
+
+footer {
+  @apply bg-gray-800 text-white p-4 text-center;
+}
+
+a {
+  @apply text-white hover:underline transition-all duration-150;
 }
