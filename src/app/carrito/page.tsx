@@ -1,10 +1,10 @@
-import './css/bubble.css';
-import ImageBox from './components/Imagebox';
-import Carousel from './components/Carousel';
-
-export default function Home() {
-  return (
-    <>
+import '../css/bubble.css'
+import '../css/carrito.css'
+import BoxProduc from '../components/Boxproduc';
+import BoxDoc from '../components/BoxDoc';
+export default function Carrito(){
+    return(
+        <> 
         <div className="bubbles"> 
           <span style={{'--i':11}as React.CSSProperties}></span>
           <span style={{'--i':12}as React.CSSProperties}></span>
@@ -37,35 +37,50 @@ export default function Home() {
           <span style={{'--i':15}as React.CSSProperties}></span>
         </div>
 
-        <div className="image-container" >
-          
-          <ImageBox src="/img/one.jpg" alt="No found"/>
-          <ImageBox src="/img/luffy.jpg"  alt="No found"/>
-          <ImageBox src="/img/da.jpg" alt="No found"/>
-          <ImageBox src="/img/naruto.jpg" alt="No found"/>
-          <ImageBox src="/img/bl.jpg" alt="No found"/>
-          <ImageBox src="/img/pica.jpg" alt="No found"/>
+       
+        <div className="main-container">
+            
+            <div className="content">
+                <h1 className="Titulo">Producto</h1>
+                <div className="Bloque">
+                    <BoxProduc />
+                    <BoxProduc />
+                </div>
+            </div>
+            
+            <div className="details-container">
+                <h1 className="Titulo2">Resumen de Compra</h1>
 
+                <aside>
+                    <div className="col-right">
+                        <div className="amount">
+                            <p><strong>Pago Total: </strong>$3819</p>
+                        </div>
+                        <div className="free">
+                            <p><strong>Envío: </strong>Gratis</p>
+                        </div>
+                        <button className="continuar">Continuar</button>
+                    </div>
+                </aside>                
+            
+            </div>
         </div>
 
-        <div className="image-container" >
-          
-          <ImageBox src="/img/jjk.jpg" alt="No found"/>
-          <ImageBox src="/img/goku.jpg"  alt="No found"/>
-          <ImageBox  src="/img/mha.jpg" alt="No found"/>
-          <ImageBox src="/img/dr.jpg" alt="No found"/>
-          <ImageBox src="/img/jojos.jpg" alt="No found"/>
-          <ImageBox src="/img/sl.jpg" alt="No found"/>
 
-
+        <h1 className='Titulo'>Domicilio</h1>
+        
+        <div className='Bloque'>
+            <BoxDoc/>
+            <BoxDoc/>
         </div>
+        
+        <button className='agregar'>Agregar</button>
 
-        <h1 className='title'>Relacionados</h1>
 
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Carousel />
-        </div>
-              
-    </>
-  );
-}
+        <br />
+        <br />
+            
+        </>
+        
+    );
+};
