@@ -146,6 +146,12 @@ export default function CreateUser() {
 
                 <button type="submit" className="btn-create">Crear</button>
             </form>
+            {/* Pie de página */}
+            <footer className="profile-footer">
+                Copyright © 2024 | Todos los derechos reservados
+            </footer>
         </div>
+
+        
     );
 }
