@@ -1,4 +1,11 @@
-/* Form container */
+/* Contenedor principal que envuelve todo el contenido */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Hace que ocupe el 100% de la altura de la ventana */
+}
+
 .create-user-container {
     width: 100%;
     max-width: 400px;
@@ -46,7 +53,7 @@
     flex: 1;
 }
 
-/* Radio buttons and checkbox */
+/* Radio buttons y checkbox */
 .form-group p {
     margin-bottom: 5px;
     font-weight: bold;
@@ -58,7 +65,7 @@
     margin-right: 10px;
 }
 
-/* Submit button */
+/* Botón de submit */
 .btn-create {
     width: 100%;
     padding: 10px;
@@ -74,7 +81,7 @@
     background: #0056b3;
 }
 
-/* Responsive design */
+/* Diseño responsivo */
 @media (max-width: 480px) {
     .create-user-container {
         padding: 15px;
