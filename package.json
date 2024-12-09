@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
+    "alertify": "^0.3.0",
+    "alertifyjs": "^1.14.0",
+    "bcrypt": "^5.1.1",
     "gapi-script": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
