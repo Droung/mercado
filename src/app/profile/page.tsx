@@ -3,13 +3,18 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { useState, useEffect } from 'react';
 import '../css/bubble.css';
 import '../css/profile.css';
+import alertify from 'alertifyjs';
+import 'alertifyjs/build/css/alertify.css';
 import Link from 'next/link'; // Importamos Link de Next.js
+
+
 
 export default function Profile() {
   const clientID = '919597223573-bb7q4pknpu77j6toc2i518hnav3jseh3.apps.googleusercontent.com';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
 
   useEffect(() => {
     console.log('Google OAuth initialized');
@@ -36,12 +41,20 @@ export default function Profile() {
       if (res.ok) {
         console.log('Login successful:', data);
         localStorage.setItem('token', data.token); // Guardar el token en localStorage
+
+      alertify.success('Inicio de sesión exitoso');
+      
       } else {
         console.error('Login failed:', data.error);
+        alertify.error('Inicio de sesión no exitoso');
+        
+        
       }
     } catch (error) {
       console.error('Error:', error);
+      
     }
+    
   };
 
   return (
@@ -112,5 +125,7 @@ export default function Profile() {
         </div>
       </GoogleOAuthProvider>
     </>
+    
   );
+ 
 }
