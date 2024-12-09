@@ -2,8 +2,11 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import '../css/createUser.css'; 
 import '../css/bubble.css'
-
+import alertify from 'alertifyjs';
+import 'alertifyjs/build/css/alertify.css';
+import { useRouter } from 'next/navigation';
 export default function CreateUser() {
+    const router = useRouter();
     const [formData, setFormData] = useState({
         email: '',
         firstName: '',
@@ -42,17 +45,14 @@ export default function CreateUser() {
           });
       
           if (response.ok) {
-            const data = await response.json();
-            alert('Usuario registrado con éxito');
-            console.log('Usuario registrado:', data);
+            alertify.success('Usuario registrado con éxito');
+            router.push('./profile'); // Redireccionar a la página de login
           } else {
-            const errorData = await response.json();
-            alert(`Error al registrar el usuario: ${errorData.error}`);
-            console.error('Error:', errorData);
+            alertify.error(`Error: ${Error}`);
           }
         } catch (error) {
-          console.error('Error en la solicitud:', error);
-          alert('Hubo un error en la solicitud');
+          console.error('Error en el registro:', error);
+          alertify.error('Error del servidor');
         }
       };
       
