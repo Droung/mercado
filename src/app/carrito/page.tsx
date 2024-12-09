@@ -1,5 +1,6 @@
 import '../css/bubble.css'
 import '../css/carrito.css'
+import Link from 'next/link';
 import BoxProduc from '../components/Boxproduc';
 import BoxDoc from '../components/BoxDoc';
 export default function Carrito(){
@@ -74,7 +75,10 @@ export default function Carrito(){
             <BoxDoc/>
         </div>
         
-        <button className='agregar'>Agregar</button>
+        <Link href="/profile/address">
+        <button className="agregar">Agregar</button>
+        </Link>
+        
 
 
         <br />

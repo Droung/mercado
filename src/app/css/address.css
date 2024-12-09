@@ -1,0 +1,102 @@
+
+.address-container {
+    display: flex;             
+    flex-direction:column;  
+    justify-content:space-between;  
+    gap: 10px;                 
+    border-radius: 20px;        
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    padding: 30px 40px;
+    margin: 20px;
+    min-width: 100vh; 
+    min-height: 734px;  
+    max-height: 1173px;            
+    width: 40%;    
+    height: 100%;      
+    margin: 0 auto;
+    background-color: white;              
+}
+
+.buttonDistribution{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0%;
+}
+
+.inputDistribution{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 50px;
+}
+
+
+
+.inputTextAddress{
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #24292e;
+    vertical-align: middle;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    outline: none;
+    box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px 0px inset;
+    :focus{
+        border-color: #0366d6;
+        outline: none;
+        box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    }
+    width: 100%; 
+}
+
+#indicaciones{
+    height: 100px;
+}
+#codigoPostal{
+    max-width: 20%;
+}
+#numeroInterior{
+    max-width: 35%;
+}
+.textAreaAddress{
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #24292e;
+    vertical-align: middle;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    outline: none;
+    box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px 0px inset;
+    :focus{
+        border-color: #0366d6;
+        outline: none;
+        box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    }
+}
+
+#addressTitle {
+    font-size: 25px;
+    position: relative; 
+    top: 50%; 
+    transform: translateX(30%); 
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.miniTextoAddress{
+    font-size: 10px;
+}
+
+#contadorIndicaciones{
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
