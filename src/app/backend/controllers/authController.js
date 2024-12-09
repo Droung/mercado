@@ -4,17 +4,35 @@ const db = require('../config/db.js'); // Configura tu conexión a MySQL
 
 // Registro de usuario
 const registerUser = async (req, res) => {
-  const { nombre, apellido_paterno, apellido_materno, correo, contraseña, fecha_registro, tipoUsuario } = req.body;
+  const { email, firstName, PaternlastName, MaternlastName, password, userType } = req.body;
+
+// Función para generar el código de usuario
+const generateUserCode = (firstName, paterLastName, maternLastName) => {
+  const date = new Date();
+  const dateString = `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}`;
+  return `${paterLastName.slice(0, 2).toUpperCase()}${maternLastName.slice(0, 1).toUpperCase()}${firstName.slice(0, 2).toUpperCase()}${dateString}`;
+};
+
+  if (!password) {
+    return res.status(400).json({ error: 'La contraseña es obligatoria' });
+  }
 
   try {
-    const hashedPassword = await bcrypt.hash(contraseña, 10);
-    const query = 'INSERT INTO usuarios (nombre, apellido_paterno, apellido_materno, correo, contraseña, fecha_registro, tipoUsuario) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    db.query(query, [nombre, apellido_paterno, apellido_materno, correo, hashedPassword, fecha_registro, tipoUsuario], (err, result) => {
+    // Encriptar la contraseña
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const codigo_usuario = generateUserCode(firstName, PaternlastName, MaternlastName);
+    console.log(codigo_usuario);
+
+    // Insertar el usuario en la base de datos
+    const query = `INSERT INTO usuarios (codigo_usuario, nombre, apellido_paterno, apellido_materno,correo, contraseña, tipoUsuario) VALUES (?, ?, ?, ?, ?, ?,?)`;
+
+    db.query(query, [codigo_usuario, firstName, PaternlastName, MaternlastName,email,  hashedPassword, userType], (err, result) => {
       if (err) {
         console.error('Error al registrar el usuario:', err);
         return res.status(500).json({ error: 'Error al registrar el usuario', details: err.message });
       }
-      res.status(201).json({ message: 'Usuario registrado con éxito' });
+
+      res.status(201).json({ message: 'Usuario registrado con éxito', codigo_usuario });
     });
   } catch (error) {
     console.error('Error del servidor:', error);
@@ -53,7 +71,9 @@ const loginUser = (req, res) => {
       }
 
       // Generación de token con código de cliente
-      const token = jwt.sign({ codigo_cliente: user.codigo_cliente }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // Clave secreta usada para firmar
+      const payload={codigo_usuario: user.codigo_usuario};
+      const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
       res.json({ message: 'Inicio de sesión exitoso', token });
     } catch (compareErr) {
       console.error('Error al comparar contraseñas:', compareErr);
