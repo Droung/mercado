@@ -1,27 +1,45 @@
 import React from 'react';
-import './userProfile.css'; 
+import '../css/bubble.css'
+import '../css/vistuser.css'
 
 const UserProfileForm = () => {
     return (
-        <div className="profile-container">
-            {/* Encabezado */}
-            <header className="profile-header">
-                <input type="text" className="search-bar" placeholder="Buscar..." />
-                <nav className="navigation">
-                    <a href="#inicio">Inicio</a>
-                    <a href="#historial">Historial</a>
-                    <div className="dropdown">
-                        <a href="#categorias">Categorías</a>
-                        <ul className="dropdown-menu">
-                            <li>Opción 1</li>
-                            <li>Opción 2</li>
-                            <li>Opción 3</li>
-                        </ul>
-                    </div>
-                    <a href="#perfil">Perfil</a>
-                </nav>
-            </header>
+        <>
 
+        <div className="bubbles"> 
+          <span style={{'--i':11}as React.CSSProperties}></span>
+          <span style={{'--i':12}as React.CSSProperties}></span>
+          <span style={{'--i':24}as React.CSSProperties}></span>
+          <span style={{'--i':10}as React.CSSProperties}></span>
+          <span style={{'--i':14}as React.CSSProperties}></span>
+          <span style={{'--i':23}as React.CSSProperties}></span>
+          <span style={{'--i':18}as React.CSSProperties}></span>
+          <span style={{'--i':16}as React.CSSProperties}></span>
+          <span style={{'--i':19}as React.CSSProperties}></span>
+          <span style={{'--i':20}as React.CSSProperties}></span>
+          <span style={{'--i':22}as React.CSSProperties}></span>
+          <span style={{'--i':25}as React.CSSProperties}></span> 
+          <span style={{'--i':18}as React.CSSProperties}></span>
+          <span style={{'--i':21}as React.CSSProperties}></span>
+          <span style={{'--i':15}as React.CSSProperties}></span>
+          <span style={{'--i':26}as React.CSSProperties}></span>
+          <span style={{'--i':17}as React.CSSProperties}></span>
+          <span style={{'--i':13}as React.CSSProperties}></span>
+          <span style={{'--i':28}as React.CSSProperties}></span>
+          <span style={{'--i':10}as React.CSSProperties}></span>
+          <span style={{'--i':14}as React.CSSProperties}></span>
+          <span style={{'--i':23}as React.CSSProperties}></span>
+          <span style={{'--i':11}as React.CSSProperties}></span>
+          <span style={{'--i':12}as React.CSSProperties}></span>
+          <span style={{'--i':24}as React.CSSProperties}></span>
+          <span style={{'--i':15}as React.CSSProperties}></span>
+          <span style={{'--i':12}as React.CSSProperties}></span>
+          <span style={{'--i':24}as React.CSSProperties}></span>
+          <span style={{'--i':15}as React.CSSProperties}></span>
+        </div>
+
+
+        <div className="profile-container">
             {/* Contenido principal */}
             <div className="form-content">
                 <div className="form-box">
@@ -48,16 +66,13 @@ const UserProfileForm = () => {
                         <input type="password" id="password" name="password" />
 
                         <button type="submit" className="save-button">Guardar</button>
-                        <button type="button" className="exit-button">Salir</button>
+                        <button type="button" className="exit-button">Salir de la cuenta </button>
                     </form>
                 </div>
             </div>
 
-            {/* Pie de página */}
-            <footer className="profile-footer">
-                Copyright © 2024 | Todos los derechos reservados
-            </footer>
         </div>
+        </>
     );
 };
 

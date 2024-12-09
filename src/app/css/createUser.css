@@ -1,0 +1,82 @@
+/* Form container */
+.create-user-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.create-user-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-group .form-row {
+    display: flex;
+    gap: 10px;
+}
+
+.form-group .form-row > div {
+    flex: 1;
+}
+
+/* Radio buttons and checkbox */
+.form-group p {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group label input[type="radio"],
+.form-group label input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Submit button */
+.btn-create {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-create:hover {
+    background: #0056b3;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .create-user-container {
+        padding: 15px;
+    }
+}

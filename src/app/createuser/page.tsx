@@ -1,7 +1,7 @@
 'use client';
 import { useState, ChangeEvent, FormEvent } from 'react';
 import '../css/createUser.css'; 
-//import React from 'react';
+import '../css/bubble.css'
 
 export default function CreateUser() {
     const [formData, setFormData] = useState({
@@ -34,6 +34,39 @@ export default function CreateUser() {
     };
 
     return (
+        <>
+        <div className="bubbles"> 
+          <span style={{'--i':11}as React.CSSProperties}></span>
+          <span style={{'--i':12}as React.CSSProperties}></span>
+          <span style={{'--i':24}as React.CSSProperties}></span>
+          <span style={{'--i':10}as React.CSSProperties}></span>
+          <span style={{'--i':14}as React.CSSProperties}></span>
+          <span style={{'--i':23}as React.CSSProperties}></span>
+          <span style={{'--i':18}as React.CSSProperties}></span>
+          <span style={{'--i':16}as React.CSSProperties}></span>
+          <span style={{'--i':19}as React.CSSProperties}></span>
+          <span style={{'--i':20}as React.CSSProperties}></span>
+          <span style={{'--i':22}as React.CSSProperties}></span>
+          <span style={{'--i':25}as React.CSSProperties}></span> 
+          <span style={{'--i':18}as React.CSSProperties}></span>
+          <span style={{'--i':21}as React.CSSProperties}></span>
+          <span style={{'--i':15}as React.CSSProperties}></span>
+          <span style={{'--i':26}as React.CSSProperties}></span>
+          <span style={{'--i':17}as React.CSSProperties}></span>
+          <span style={{'--i':13}as React.CSSProperties}></span>
+          <span style={{'--i':28}as React.CSSProperties}></span>
+          <span style={{'--i':10}as React.CSSProperties}></span>
+          <span style={{'--i':14}as React.CSSProperties}></span>
+          <span style={{'--i':23}as React.CSSProperties}></span>
+          <span style={{'--i':11}as React.CSSProperties}></span>
+          <span style={{'--i':12}as React.CSSProperties}></span>
+          <span style={{'--i':24}as React.CSSProperties}></span>
+          <span style={{'--i':15}as React.CSSProperties}></span>
+          <span style={{'--i':12}as React.CSSProperties}></span>
+          <span style={{'--i':24}as React.CSSProperties}></span>
+          <span style={{'--i':15}as React.CSSProperties}></span>
+        </div>
+
         <div className="create-user-container">
             <form className="create-user-form" onSubmit={handleSubmit}>
                 <h2>Crear Usuario</h2>
@@ -146,12 +179,9 @@ export default function CreateUser() {
 
                 <button type="submit" className="btn-create">Crear</button>
             </form>
-            {/* Pie de página */}
-            <footer className="profile-footer">
-                Copyright © 2024 | Todos los derechos reservados
-            </footer>
         </div>
-
+    
+    </>
         
     );
 }
