@@ -39,18 +39,14 @@ export default function Producto(){
             <div className="Contenedor">
 
                 
-
-                
-
+                <h1 className='Titulo'></h1>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Carousel />
+                </div>
             </div>
 
             
-            <h1 className='Titulo'></h1>
-
-<div style={{ display: 'flex', justifyContent: 'center' }}>
-    <Carousel />
-</div>
-
+        
         </>
     );
 };

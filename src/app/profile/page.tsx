@@ -3,6 +3,7 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { useState, useEffect } from 'react';
 import '../css/bubble.css';
 import '../css/profile.css';
+import Link from 'next/link'; // Importamos Link de Next.js
 
 export default function Profile() {
   const clientID = '919597223573-bb7q4pknpu77j6toc2i518hnav3jseh3.apps.googleusercontent.com';
@@ -34,8 +35,7 @@ export default function Profile() {
 
       if (res.ok) {
         console.log('Login successful:', data);
-        // Guarda el token en localStorage para proteger rutas
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('token', data.token); // Guardar el token en localStorage
       } else {
         console.error('Login failed:', data.error);
       }
@@ -95,9 +95,14 @@ export default function Profile() {
               <button type="submit" className="btn-login">
                 Iniciar Sesión
               </button>
-              <button type="button" className="btn-create">
-                Crear Cuenta
-              </button>
+
+              <Link href="/createuser" className='btn-create'>
+                <button type="button" className="btn-create">
+                  Crear Cuenta
+                </button>
+              </Link>
+            
+            
             </div>
           </form>
 

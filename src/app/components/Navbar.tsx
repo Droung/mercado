@@ -1,12 +1,12 @@
 // app/components/Navbar.tsx
 import Link from "next/link";
 import { FaUserCircle, FaShoppingCart, FaSearch } from "react-icons/fa";
-import styles from "../css/header.module.css"; // Asegúrate de que la ruta sea correcta
+import styles from "../css/header.module.css"; 
 
 const Navbar = () => {
   return (
     <header className={styles.header}>
-      {/* Contenedor de búsqueda */}
+
       <div className={styles["search-container"]}>
         <input
           type="text"
@@ -18,7 +18,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Menú de navegación */}
       <nav className="flex items-center gap-4 ml-4">
         <Link href="/" className={styles.navLink}>Inicio</Link>
         <Link href="/history" className={styles.navLink}>Historial</Link>
