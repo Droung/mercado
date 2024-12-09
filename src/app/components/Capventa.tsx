@@ -29,7 +29,7 @@ const Capventa = () => {
             <div style={styles.buttonsContainer}>
                 <button style={styles.removeButton} onClick={handleRemove}>Eliminar</button>
 
-                <a href="/createuser">
+                <a href="/createarticulo">
             <button style={styles.editButton} onClick={handleEdit}>Editar</button>
         </a>
             </div>

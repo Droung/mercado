@@ -40,7 +40,7 @@ export default function Profile() {
 
       if (res.ok) {
         console.log('Login successful:', data);
-        localStorage.setItem('token', data.token); // Guardar el token en localStorage
+        localStorage.setItem('token', data.token);
 
       alertify.success('Inicio de sesión exitoso');
       window.location.href = '/';

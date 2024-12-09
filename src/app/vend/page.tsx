@@ -40,7 +40,10 @@ export default function Vend(){
 
             <div className='Wrapper'>
                 <div className='Contenedor'>
+                    <link href="/createarticulo">
                     <button className='addButton'>+</button>
+                    </link>
+                    
                     <Capventa/>
                     <Capventa/>
                     <Capventa/>
