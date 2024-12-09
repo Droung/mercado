@@ -9,3 +9,73 @@
     background-color: #f0f0f0;
     border-radius: 20;
 }
+
+.Contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.Titulo {
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.DetallesProducto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.InformacionProducto {
+    text-align: center;
+}
+
+.Precio {
+    font-size: 28px;
+    color: #e91e63;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.OpcionesCompra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.Cantidad select {
+    padding: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.Boton {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Boton.Comprar {
+    background-color: #e91e63;
+    color: #fff;
+}
+
+.Boton.Agregar {
+    background-color: #ccc;
+    color: #333;
+}
+
+.Boton:hover {
+    opacity: 0.9;
+}
