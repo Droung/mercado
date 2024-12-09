@@ -20,10 +20,10 @@ const registerUser = async (req, res) => {
 
 // Inicio de sesión
 const loginUser = (req, res) => {
-  const { email, password } = req.body;
+  const { correo, contraseña } = req.body;
 
-  const query = 'SELECT * FROM usuarios WHERE email = ?';
-  db.query(query, [email], async (err, results) => {
+  const query = 'SELECT * FROM usuarios WHERE correo = ?';
+  db.query(query, [correo], async (err, results) => {
     if (err) {
       console.error('Error de base de datos:', err);
       return res.status(500).json({ error: `Error del servidor: ${err.message}` });
@@ -34,7 +34,7 @@ const loginUser = (req, res) => {
     }
 
     const user = results[0];
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(contraseña, user.contraseña);
 
     if (!isMatch) {
       return res.status(400).json({ error: 'Credenciales inválidas' });
