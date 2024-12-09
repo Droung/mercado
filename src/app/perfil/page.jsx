@@ -9,15 +9,13 @@ export default function Perfil() {
   const { user, logout } = useAuth();
   const [userData, setUserData] = useState(null);
 
-  useEffect(() => {
-    // Verificar si el usuario está autenticado
-    if (!user) {
+  useEffect(() => {    if (!user) {
       alertify.error('Por favor inicia sesión para acceder a tu perfil');
       window.location.href = '/';
       return;
     }
 
-    // Obtener información del usuario desde el servidor
+
     const fetchUserData = async () => {
       try {
         const res = await fetch('http://localhost:5000/api/auth/user', {
