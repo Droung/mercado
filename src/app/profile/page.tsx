@@ -6,19 +6,23 @@ import '../css/profile.css';
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 import Link from 'next/link'; // Importamos Link de Next.js
+import {useAuth} from '../backend/context/AuthContext';
 
 
 
 export default function Profile() {
   const clientID = '919597223573-bb7q4pknpu77j6toc2i518hnav3jseh3.apps.googleusercontent.com';
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { user, login } = useAuth();
 
 
   useEffect(() => {
-    console.log('Google OAuth initialized');
-  }, []);
+    if (user) {
+      alertify.success('Ya has iniciado sesión');
+      window.location.href = '/';
+    }
+  }, [user]);
 
   const onSuccess = (response: any) => {
     console.log('Login Success:', response);
@@ -40,15 +44,16 @@ export default function Profile() {
 
       if (res.ok) {
         console.log('Login successful:', data);
-        localStorage.setItem('token', data.token);
+localStorage.setItem('token', data.token);
+login(data.token); // Guardar el token en el contexto
+
 
       alertify.success('Inicio de sesión exitoso');
       window.location.href = '/';
       
       } else {
-        console.error('Login failed:', data.error);
-        alertify.error('Inicio de sesión no exitoso');
-        
+        console.error('Error:', Error);
+      alertify.error('Ocurrió un error al intentar iniciar sesión');
         
       }
     } catch (error) {
