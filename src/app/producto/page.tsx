@@ -43,6 +43,8 @@ export default function Producto(){
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Carousel />
                 </div>
+
+                
             </div>
 
             

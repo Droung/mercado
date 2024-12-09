@@ -1,0 +1,41 @@
+.Wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    height: 100vh;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+.Contenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 1250px;
+    overflow: auto;
+}
+
+.addButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 30px;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+}
+
+.addButton:hover {
+    background-color: #45a049;
+}
