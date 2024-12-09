@@ -102,7 +102,6 @@ export default function Profile() {
                 </button>
               </Link>
             
-            
             </div>
           </form>
 
