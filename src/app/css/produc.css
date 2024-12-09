@@ -19,12 +19,18 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.Titulo {
-    font-size: 24px;
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
+.title {
+    background-color: white;
+    padding: 10px;           
+    border-radius: 8px;       
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    width: 300px;             
+    margin: 20px 180px;
+    align-items:end;
+    position: relative;
+    font-size: 25px;
+  }
+  
 
 .DetallesProducto {
     display: flex;
