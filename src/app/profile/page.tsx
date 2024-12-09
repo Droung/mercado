@@ -43,6 +43,7 @@ export default function Profile() {
         localStorage.setItem('token', data.token); // Guardar el token en localStorage
 
       alertify.success('Inicio de sesión exitoso');
+      window.location.href = '/';
       
       } else {
         console.error('Login failed:', data.error);
