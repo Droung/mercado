@@ -57,7 +57,6 @@ export default function Home() {
           <ImageBox src="/img/jojos.jpg" alt="No found"/>
           <ImageBox src="/img/sl.jpg" alt="No found"/>
 
-
         </div>
 
         <h1 className='title'>Relacionados</h1>
