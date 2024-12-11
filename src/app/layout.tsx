@@ -66,7 +66,6 @@ export default function RootLayout({
           </div>
 
           <div>{children}</div>
-          <Footer />
         </AuthProvider>
       </body>
     </html>
