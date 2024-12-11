@@ -2,13 +2,16 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import '../css/createUser.css'; 
 import '../css/bubble.css'
-
+import alertify from 'alertifyjs';
+import 'alertifyjs/build/css/alertify.css';
+import { useRouter } from 'next/navigation';
 export default function CreateUser() {
+    const router = useRouter();
     const [formData, setFormData] = useState({
         email: '',
         firstName: '',
-        lastName: '',
-        phone: '',
+        PaternlastName: '',
+        MaternlastName: '',
         password: '',
         userType: '',
         termsAccepted: false,
@@ -23,14 +26,36 @@ export default function CreateUser() {
         });
     };
 
+    // Tipo específico para el evento del formulario y acepte las condiciones
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+      
         if (!formData.termsAccepted) {
-            alert('Debes aceptar los términos y condiciones.');
-            return;
+          alert('Debes aceptar los términos y condiciones.');
+          return;
         }
-        console.log('Formulario enviado:', formData);
-    };
+      
+        try {
+          const response = await fetch('http://localhost:5000/api/auth/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+      
+          if (response.ok) {
+            alertify.success('Usuario registrado con éxito');
+            router.push('./profile'); // Redireccionar a la página de login
+          } else {
+            alertify.error(`Error: ${Error}`);
+          }
+        } catch (error) {
+          console.error('Error en el registro:', error);
+          alertify.error('Error del servidor');
+        }
+      };
+      
 
     return (
         <>
@@ -66,13 +91,25 @@ export default function CreateUser() {
                                 />
                             </div>
                             <div>
-                                <label htmlFor="lastName">Apellido</label>
+                                <label htmlFor="lastName">Apellido Paterno</label>
                                 <input
                                     type="text"
-                                    id="lastName"
-                                    name="lastName"
-                                    placeholder="Apellido"
-                                    value={formData.lastName}
+                                    id="PaternlastName"
+                                    name="PaternlastName"
+                                    placeholder="Apellido Paterno"
+                                    value={formData.PaternlastName}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="lastName">Apellido Materno</label>
+                                <input
+                                    type="text"
+                                    id="MaternlastName"
+                                    name="MaternlastName"
+                                    placeholder="Apellido Materno"
+                                    value={formData.MaternlastName}
                                     onChange={handleChange}
                                     required
                                 />
@@ -80,31 +117,21 @@ export default function CreateUser() {
                         </div>
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="phone">Ingresa tu teléfono</label>
-                        <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            placeholder="+52"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
+                    
 
-                    <div className="form-group">
-                        <label htmlFor="password">Ingresa una contraseña</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Contraseña"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
+                                    <div className="form-group">
+                <label htmlFor="password">Ingresa una contraseña</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"  // Asegúrate de que el name sea 'password'
+                    placeholder="Contraseña"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                />
+                </div>
+
 
                     <div className="form-group">
                         <p>Tipo de usuario</p>
@@ -123,12 +150,12 @@ export default function CreateUser() {
                             <input
                                 type="radio"
                                 name="userType"
-                                value="comprador"
-                                checked={formData.userType === 'comprador'}
+                                value="Cliente"
+                                checked={formData.userType === 'Cliente'}
                                 onChange={handleChange}
                                 required
                             />
-                            Comprador
+                            Cliente
                         </label>
                     </div>
 

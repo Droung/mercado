@@ -6,7 +6,8 @@ import styles from '../css/header.module.css';
 import { useAuth } from '../backend/context/AuthContext';
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
-
+import dynamic from 'next/dynamic';
+const AlertifyComponent = dynamic(() => import('alertifyjs'), { ssr: false });
 const Navbar = () => {
   const { user, logout } = useAuth();
 

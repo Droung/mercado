@@ -15,7 +15,6 @@ export default function Perfil() {
       return;
     }
 
-
     const fetchUserData = async () => {
       try {
         const res = await fetch('http://localhost:5000/api/auth/user', {
@@ -25,6 +24,7 @@ export default function Perfil() {
         });
 
         if (!res.ok) {
+          console.log(user.token);
           throw new Error('Error al obtener los datos del usuario');
         }
 
@@ -46,25 +46,32 @@ export default function Perfil() {
   };
 
   return (
-    <>
-    
-    <div className="perfil-container">
-      <h1>Perfil del Usuario</h1>
+    <div className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+      <h1 className="text-3xl font-bold mb-6 text-center text-gray-700">Perfil del Usuario</h1>
 
       {userData ? (
-        <div>
-          <p><strong>Nombre:</strong> {userData.nombre}</p>
-          <p><strong>Email:</strong> {userData.email}</p>
-          <p><strong>Dirección:</strong> {userData.direccion}</p>
-          <p><strong>Tipo de Usuario:</strong> {userData.tipoUsuario}</p>
-          <p><strong>Pedidos:</strong> {userData.pedidos.join(', ')}</p>
+        <div className="space-y-4">
+          <p className="text-lg">
+            <strong className="text-gray-600">Nombre:</strong> {userData.nombre}
+          </p>
+          <p className="text-lg">
+            <strong className="text-gray-600">Apellido Paterno:</strong> {userData.apellido_paterno}
+          </p>
+          <p className="text-lg">
+            <strong className="text-gray-600">Apellido Materno:</strong> {userData.apellido_materno}
+          </p>
+          <p className="text-lg">
+            <strong className="text-gray-600">Tipo de Usuario:</strong> {userData.tipoUsuario}
+          </p>
+          <p className="text-lg">
+            <strong className="text-gray-600">Pedidos:</strong> {userData.pedidos.join(', ')}
+          </p>
 
-          <button onClick={handleLogout} className="btn-logout">Cerrar Sesión</button>
+         
         </div>
       ) : (
-        <p>Cargando datos del perfil...</p>
+        <p className="text-center text-gray-500">Cargando datos del perfil...</p>
       )}
     </div>
-    </>
   );
 }
