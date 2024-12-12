@@ -98,8 +98,15 @@ export default function Profile() {
         </div>
 
         <div>
-          <label htmlFor="imagenProducto">Subir imagen:</label><br />
-          <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*" />
+          <label htmlFor="urlImagenProducto">URL de la imagen:</label><br />
+          <input
+            placeholder="Ej. https://miurl.com/imagen.jpg"
+            className="inputTextProduct"
+            type="text"
+            id="urlImagenProducto"
+            name="urlImagenProducto"
+            required
+          />
         </div>
 
         <div className="buttonDistribution">
