@@ -9,7 +9,7 @@ const Carousel = () => {
 
   const [products, setProducts] = useState<any[]>([]);
 
-  // Group products in batches of 5
+
   const groupProducts = (products: any[]) => {
     const groups = [];
     for (let i = 0; i < products.length; i += 5) {
@@ -22,34 +22,33 @@ const Carousel = () => {
     setCurrentCircleIndex(index);
   };
 
-  // Fetch products from the backend when the component mounts
+  // Cargar los productos desde el backend al montar el componente
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch('http://localhost:5000/api/products');
-
+  
         if (!response.ok) {
           throw new Error('Error al obtener los productos');
         }
-
+  
         const data = await response.json();
-        console.log('Productos recibidos:', data); // Check what data is received
-        const limitedProducts = data.slice(0, 15); // Limit to the first 15 products
+        console.log('Productos recibidos:', data); // Verificar qué datos se reciben
+        const limitedProducts = data.slice(0, 15);
         setProducts(limitedProducts);
       } catch (error) {
         console.error('Error al obtener los productos:', error);
       }
     };
-
+  
     fetchProducts();
   }, []);
-
-  // Group the products in blocks of 5 for the carousel
+  // Agrupar los productos en bloques de 5 para el carrusel
   const productGroups = groupProducts(products);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '80%', padding: '0 10px' }}>
-      {/* Navigation dots for the carousel */}
+      {/* Puntos de navegación entre los círculos */}
       <div
         style={{
           marginBottom: '20px',
@@ -85,7 +84,7 @@ const Carousel = () => {
         </div>
       </div>
 
-      {/* Show the products of the current circle */}
+      {/* Mostrar los productos del círculo actual */}
       <div
         style={{
           display: 'flex',
@@ -97,14 +96,13 @@ const Carousel = () => {
           gap: '5px',
         }}
       >
-        {productGroups[currentCircleIndex]?.map((product) => (
+        {productGroups[currentCircleIndex]?.map((product, index) => (
           <ProductCard
-            key={product.id} // Use the product's unique id for the key
-            id={product.id} // Pass the product id to ProductCard
-            imagen={product.imagen} // Adjust this according to your API response format
-            nombre_articulo={product.nombre_articulo} // Adjust according to your API response format
-            costo={product.costo} // Adjust according to your API response format
-          />
+            key={index}
+            imagen={product.imagen} // Ajusta esto según el formato de tu respuesta API
+            nombre_articulo={product.nombre_articulo} // Ajusta esto según el formato de tu respuesta API
+            costo={product.costo} // Ajusta esto según el formato de tu respuesta API
+        />
         ))}
       </div>
     </div>
