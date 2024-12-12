@@ -20,12 +20,12 @@ export default function Profile() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     if (!imagenProducto) {
       alertify.error('Por favor, selecciona una imagen');
       return;
     }
-  
+
     const formData = new FormData();
     formData.append('nombreProducto', nombreProducto);
     formData.append('costoProducto', costoProducto);
@@ -33,26 +33,36 @@ export default function Profile() {
     formData.append('categoriaProducto', categoriaProducto);
     formData.append('descripcionProducto', descripcionProducto);
     formData.append('imagenProducto', imagenProducto);
-  
+
     try {
+      const token = localStorage.getItem('token'); // Obtener el token del vendedor desde el localStorage
+      if (!token) {
+        alertify.error('No estás autenticado');
+        return;
+      }
+
       const response = await fetch('http://localhost:5000/api/articles/create', {
         method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`, // Enviar el token en el encabezado Authorization
+        },
         body: formData,
       });
-  
+
       const contentType = response.headers.get('content-type');
-      
+
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Error:', errorText);
         alertify.error(`Error: ${errorText}`);
         return;
       }
-  
+
       if (contentType && contentType.includes('application/json')) {
         const data = await response.json();
         alertify.success('Artículo creado con éxito');
         console.log(data);
+       
       } else {
         const errorText = await response.text();
         console.error('Error inesperado:', errorText);
@@ -63,7 +73,6 @@ export default function Profile() {
       alertify.error('Error en la solicitud');
     }
   };
-  
 
   return (
     <>
@@ -119,7 +128,7 @@ export default function Profile() {
                 onChange={(e) => setCategoriaProducto(e.target.value)}
                 required
               >
-                <option value="Figuras">Figuras</option>
+                <option value="Figura">Figuras</option>
                 <option value="Llaveros">Llaveros</option>
                 <option value="Peluches">Peluches</option>
                 <option value="Otros">Otros</option>
