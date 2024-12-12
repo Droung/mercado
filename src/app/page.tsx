@@ -5,6 +5,7 @@ import Carousel from './components/Carousel';
 export default function Home() {
   return (
     <>
+    
       <div className="image-container">
         <ImageBox src="/img/one.jpg" alt="Not found"/>
         <ImageBox src="/img/luffy.jpg" alt="Not found"/>
