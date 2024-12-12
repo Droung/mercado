@@ -1,20 +1,39 @@
 const mysql = require('mysql');
-require('dotenv').config();
 
-const db = mysql.createConnection({
+const dbConfig = {
   host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-});
+  port: process.env.DB_PORT,
+};
 
-db.connect(err => {
-  if (err) {
-    console.error('Error connecting to MySQL:', err);
-    return;
-  }
-  console.log('Connected to MySQL');
-});
+let connection;
 
-module.exports = db;
+function handleDisconnect() {
+  connection = mysql.createConnection(dbConfig);
+
+  connection.connect((err) => {
+    if (err) {
+      console.error('Error connecting to MySQL:', err);
+      setTimeout(handleDisconnect, 2000); // Reintentar la conexión después de 2 segundos
+    } else {
+      console.log('Connected to MySQL');
+    }
+  });
+
+  connection.on('error', (err) => {
+    console.error('MySQL error:', err);
+    if (err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'ECONNRESET') {
+      console.log('Reconnecting to MySQL...');
+      handleDisconnect();
+    } else {
+      throw err;
+    }
+  });
+}
+
+// Iniciar la primera conexión
+handleDisconnect();
+
+module.exports = connection;

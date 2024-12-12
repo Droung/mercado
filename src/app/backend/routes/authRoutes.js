@@ -19,13 +19,14 @@ router.get('/user', authMiddleware, (req, res) => {
   const codigoUsuario = req.codigo_usuario; // Usar la variable del middleware
   console.log('Código de usuario recibido:', codigoUsuario);
 
+  // Consultar en ambas tablas: usuarios_clientes y usuarios_vendedores
   const query = `
-    SELECT *
-    FROM usuarios
-    WHERE codigo_usuario = ?
+    SELECT *, 'cliente' AS tipoUsuario FROM usuarios_clientes WHERE codigo_usuario = ?
+    UNION
+    SELECT *, 'vendedor' AS tipoUsuario FROM usuarios_vendedores WHERE codigo_usuario = ?
   `;
 
-  db.query(query, [codigoUsuario], (err, results) => {
+  db.query(query, [codigoUsuario, codigoUsuario], (err, results) => {
     if (err) {
       console.error('Error al obtener los datos del usuario:', err);
       return res.status(500).json({ error: 'Error al obtener los datos del usuario' });
