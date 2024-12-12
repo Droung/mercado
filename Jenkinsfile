@@ -32,7 +32,7 @@ pipeline {
                 echo 'Desplegando a Hostinger...'
                 sh '''
                 # Copia los archivos al servidor de Hostinger usando SCP
-                scp -P 65002 -r * u638080153@82.197.80.191:/home/u638080153/public_html
+                 scp -P 65002 -o StrictHostKeyChecking=no -r Dockerfile Jenkinsfile README.md next-env.d.ts next.config.ts node_modules package-lock.json package.json postcss.config.mjs public src tailwind.config.ts tsconfig.json u638080153@82.197.80.191:/home/u638080153/public_html
                 '''
             }
         }
