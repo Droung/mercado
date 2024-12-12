@@ -8,7 +8,7 @@ export default function Address() {
 
     const [formData, setFormData] = useState({
         direccion: '',
-        codigoPostal: '',
+        codigo_postal: '',
         estado: '',
         municipio: '',
         localidad: '',
@@ -17,7 +17,7 @@ export default function Address() {
         indicaciones: '',
         tipoDomicilio: '',
         nombre: '',
-        telefono: '',
+        numero_telefono: '',
       });
     
       const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -41,7 +41,7 @@ export default function Address() {
             alert('Dirección registrada con éxito');
             setFormData({
               direccion: '',
-              codigoPostal: '',
+              codigo_postal: '',
               estado: '',
               municipio: '',
               localidad: '',
@@ -50,7 +50,7 @@ export default function Address() {
               indicaciones: '',
               tipoDomicilio: '',
               nombre: '',
-              telefono: '',
+              numero_telefono: '',
             });
           } else {
             alert('Error al registrar la dirección');
@@ -74,8 +74,8 @@ export default function Address() {
                     </div>
 
                     <div>
-                        <label htmlFor="codigoPostal">Código Postal:</label><br />
-                        <input placeholder='Ej. 98043' className='inputTextAddress' type="text" id="codigoPostal" name="codigoPostal" required value={formData.codigoPostal} onChange={handleChange} />
+                        <label htmlFor="codigo_postal">Código Postal:</label><br />
+                        <input placeholder='Ej. 98043' className='inputTextAddress' type="text" id="codigo_postal" name="codigo_postal" required value={formData.codigo_postal} onChange={handleChange} />
                     </div>
                     <div className='inputDistribution'>
                     <div>
@@ -149,8 +149,8 @@ export default function Address() {
                     </div>
 
                     <div>
-                        <label htmlFor="telefono">Teléfono:</label><br />
-                        <input className='inputTextAddress' type="text" id="telefono" name="telefono" value={formData.telefono} onChange={handleChange} required />
+                        <label htmlFor="numero_telefono">Teléfono:</label><br />
+                        <input className='inputTextAddress' type="text" id="numero_telefono" name="numero_telefono" value={formData.numero_telefono} onChange={handleChange} required />
                     </div>
 
                     <div className='buttonDistribution'>

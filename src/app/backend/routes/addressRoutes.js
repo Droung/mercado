@@ -5,14 +5,14 @@ const router = express.Router();
 // Ruta para guardar la dirección
 router.post('/addressRoutes', (req, res) => {
   const {
-    direccion, codigoPostal, estado, municipio, localidad, colonia,
-    numeroInterior, indicaciones, tipoDomicilio, nombre, telefono
+    direccion, codigo_postal, estado, municipio, localidad, colonia,
+    numeroInterior, indicaciones, tipoDomicilio, nombre, numero_telefono
   } = req.body;
 
-  const query = `INSERT INTO direcciones (direccion, codigoPostal, estado, municipio, localidad, colonia, numeroInterior, indicaciones, tipoDomicilio, nombre, telefono)
+  const query = `INSERT INTO direcciones (direccion, codigo_postal, estado, municipio, localidad, colonia, numeroInterior, indicaciones, tipoDomicilio, nombre, numero_telefono)
                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-  const values = [direccion, codigoPostal, estado, municipio, localidad, colonia, numeroInterior, indicaciones, tipoDomicilio, nombre, telefono];
+  const values = [direccion, codigo_postal, estado, municipio, localidad, colonia, numeroInterior, indicaciones, tipoDomicilio, nombre, numero_telefono];
 
   db.query(query, values, (err, results) => {
     if (err) {

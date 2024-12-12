@@ -19,7 +19,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/articles', articlesRoutes);
 app.use('/api', productsRoutes);
 app.use('/api/articles', insertArticlesRoutes);
-app.use('/backend/routes', addressRoutes);
+app.use('/api/routes', addressRoutes);
 
 
 // Endpoint de prueba
