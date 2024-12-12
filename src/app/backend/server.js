@@ -6,6 +6,7 @@ const authRoutes = require('./routes/authRoutes');
 const articlesRoutes = require('./routes/articles');
 const productsRoutes = require('./routes/productRoutes');
 const insertArticlesRoutes = require('./routes/articlesRoutes');
+const addressRoutes = require('./routes/addressRoutes');
 const app = express();
 
 // Middleware
@@ -18,6 +19,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/articles', articlesRoutes);
 app.use('/api', productsRoutes);
 app.use('/api/articles', insertArticlesRoutes);
+app.use('/backend/routes', addressRoutes);
 
 
 // Endpoint de prueba
