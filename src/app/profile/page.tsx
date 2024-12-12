@@ -15,15 +15,7 @@ export default function Profile() {
   const { user, login } = useAuth();
 
   useEffect(() => {
-    if (user) {
-      if (user.role === 'vendedor') {
-        alertify.success('Bienvenido, vendedor');
-        window.location.href = './vend';
-      } else {
-        alertify.success('Ya has iniciado sesión');
-        window.location.href = '/';
-      }
-    }
+   
   }, [user]);
 
   const onSuccess = (response: any) => {
