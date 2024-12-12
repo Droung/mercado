@@ -32,7 +32,7 @@ pipeline {
                 echo 'Desplegando a Hostinger...'
                 sh '''
                 # Copia los archivos al servidor de Hostinger usando SCP
-                scp -r * u638080153@82.197.80.191:/home/u638080153/public_html
+                scp -P 65002 -r * u638080153@82.197.80.191:/home/u638080153/public_html
                 '''
             }
         }
