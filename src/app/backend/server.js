@@ -5,6 +5,7 @@ const db = require('./config/db');
 const authRoutes = require('./routes/authRoutes'); 
 const articlesRoutes = require('./routes/articles');
 const insertArticlesRoutes = require('./routes/articlesRoutes');
+const addressRoutes = require('./routes/addressRoutes');
 const app = express();
 
 // Middleware
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/articles', articlesRoutes);
 app.use('/api/articles', insertArticlesRoutes);
+app.use('/backend/routes', addressRoutes);
 
 // Endpoint de prueba
 app.get('/', (req, res) => {
