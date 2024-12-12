@@ -84,11 +84,11 @@ const loginUser = (req, res) => {
   console.log('Correo recibido:', email);
   console.log('Contraseña recibida:', password);
 
-  // Consulta para buscar en ambas tablas
+  // Consulta para buscar en ambas tablas y obtener el tipo de usuario
   const query = `
-    SELECT correo, contraseña, codigo_usuario FROM usuarios_clientes WHERE correo = ?
+    SELECT correo, contraseña, codigo_usuario, 'cliente' AS tipoUsuario FROM usuarios_clientes WHERE correo = ?
     UNION
-    SELECT correo, contraseña, codigo_usuario FROM usuarios_vendedores WHERE correo = ?
+    SELECT correo, contraseña, codigo_usuario, 'vendedor' AS tipoUsuario FROM usuarios_vendedores WHERE correo = ?
   `;
 
   db.query(query, [email, email], async (err, results) => {
@@ -114,11 +114,11 @@ const loginUser = (req, res) => {
         return res.status(400).json({ error: 'Credenciales inválidas' });
       }
 
-      // Generación de token con código de usuario
-      const payload = { codigo_usuario: user.codigo_usuario };
+      // Generación de token con código de usuario y tipo de usuario
+      const payload = { codigo_usuario: user.codigo_usuario, tipoUsuario: user.tipoUsuario };
       const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
       
-      res.json({ message: 'Inicio de sesión exitoso', token });
+      res.json({ message: 'Inicio de sesión exitoso', token, tipoUsuario: user.tipoUsuario });
     } catch (compareErr) {
       console.error('Error al comparar contraseñas:', compareErr);
       return res.status(500).json({ error: 'Error al verificar la contraseña' });

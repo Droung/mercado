@@ -5,10 +5,8 @@ import '../css/bubble.css';
 import '../css/profile.css';
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
-import Link from 'next/link'; // Importamos Link de Next.js
-import {useAuth} from '../backend/context/AuthContext';
-
-
+import Link from 'next/link';
+import { useAuth } from '../backend/context/AuthContext';
 
 export default function Profile() {
   const clientID = '919597223573-bb7q4pknpu77j6toc2i518hnav3jseh3.apps.googleusercontent.com';
@@ -16,12 +14,8 @@ export default function Profile() {
   const [password, setPassword] = useState('');
   const { user, login } = useAuth();
 
-
   useEffect(() => {
-    if (user) {
-      alertify.success('Ya has iniciado sesión');
-      window.location.href = '/';
-    }
+   
   }, [user]);
 
   const onSuccess = (response: any) => {
@@ -44,23 +38,25 @@ export default function Profile() {
 
       if (res.ok) {
         console.log('Login successful:', data);
-localStorage.setItem('token', data.token);
-login(data.token); // Guardar el token en el contexto
+        localStorage.setItem('token', data.token);
+        login(data.token); // Guardar el token en el contexto
 
+        alertify.success('Inicio de sesión exitoso');
 
-      alertify.success('Inicio de sesión exitoso');
-      window.location.href = '/';
-      
+        // Redirigir según el tipo de usuario
+        if (data.tipoUsuario === 'vendedor') {
+          window.location.href = '/vend';
+        } else {
+          window.location.href = '/';
+        }
       } else {
-        console.error('Error:', Error);
-      alertify.error('Ocurrió un error al intentar iniciar sesión');
-        
+        console.error('Error:', data.error);
+        alertify.error(data.error || 'Ocurrió un error al intentar iniciar sesión');
       }
     } catch (error) {
       console.error('Error:', error);
-      
+      alertify.error('Error del servidor');
     }
-    
   };
 
   return (
@@ -97,12 +93,11 @@ login(data.token); // Guardar el token en el contexto
                 Iniciar Sesión
               </button>
 
-              <Link href="/createuser" className='btn-create'>
+              <Link href="/createuser">
                 <button type="button" className="btn-create">
                   Crear Cuenta
                 </button>
               </Link>
-            
             </div>
           </form>
 
@@ -112,7 +107,5 @@ login(data.token); // Guardar el token en el contexto
         </div>
       </GoogleOAuthProvider>
     </>
-    
   );
- 
 }
