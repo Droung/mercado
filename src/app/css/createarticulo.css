@@ -1,96 +1,167 @@
+/* Contenedor principal */
 .product-container {
-    display: flex;              
-    flex-direction: column;  
-    justify-content: space-between;  
-    gap: 10px;                 
-    border-radius: 20px;        
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
-    padding: 30px 40px;
-    margin: 20px;
-    min-width: 100vh; 
-    min-height: 734px;  
-    max-height: 1173px;            
-    width: 40%;    
-    height: 100%;      
-    margin: 0 auto;
-    background-color: white;               
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Cambié a flex-start para que los elementos no queden distribuidos al azar */
+    gap: 15px; /* Mayor espacio entre elementos */
+    border-radius: 15px; /* Radio de borde más suave */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra más suave y extendida */
+    padding: 40px 50px; /* Espaciado más amplio */
+    margin: 30px auto; /* Mejor centrado y margen superior */
+    min-width: 300px; /* Ancho mínimo ajustado */
+    max-width: 600px; /* Máximo ancho para control */
+    background-color: #fff; /* Blanco puro */
+    transition: all 0.3s ease; /* Transición suave para cambios visuales */
 }
 
+.product-container:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Sombra al pasar el mouse */
+}
+
+/* Botones de distribución */
 .buttonDistribution {
     display: flex;
-    justify-content: space-evenly;
-    padding: 0%;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
 }
 
+/* Botones individuales */
+.buttonDistribution button {
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: bold;
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    background-color: #0366d6; /* Color de fondo por defecto */
+    color: white; /* Color de texto blanco */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+}
+
+/* Efecto de hover en los botones */
+.buttonDistribution button:hover {
+    background-color: #024f8c; /* Color de fondo más oscuro */
+    transform: scale(1.05); /* Efecto de agrandamiento al pasar el ratón */
+}
+
+/* Botón deshabilitado */
+.buttonDistribution button:disabled {
+    background-color: #ccc; /* Fondo gris para deshabilitado */
+    cursor: not-allowed; /* Cursor de deshabilitado */
+    transform: none; /* Quita el efecto de agrandamiento */
+}
+
+/* Contenedor de inputs */
 .inputDistribution {
     display: flex;
     justify-content: space-between;
+    gap: 30px;
     width: 100%;
-    gap: 50px;
 }
 
+/* Inputs de texto */
 .inputTextProduct {
-    padding: 5px 12px;
-    font-size: 14px;
-    line-height: 20px;
-    color: #24292e;
-    vertical-align: middle;
-    background-color: #ffffff;
-    background-repeat: no-repeat;
-    background-position: right 8px center;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 16px; /* Aumenté el tamaño de fuente */
+    line-height: 22px;
+    color: #333; /* Color de texto más oscuro */
+    background-color: #f9f9f9; /* Fondo más suave */
+    border: 1px solid #ddd;
+    border-radius: 8px;
     outline: none;
-    box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px 0px inset;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Estilo al enfocar los inputs */
 .inputTextProduct:focus {
-    border-color: #0366d6;
-    outline: none;
-    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    border-color: #0366d6; /* Azul más visible */
+    box-shadow: 0 0 8px rgba(3, 102, 214, 0.3);
 }
 
+/* Área de descripción */
 #descripcionProducto {
-    height: 100px;
+    height: 120px;
+    resize: vertical; /* Permite cambiar el tamaño */
+    font-size: 14px; /* Mejora la legibilidad */
 }
 
+/* Estilo para inputs con tamaños específicos */
 #costoProducto,
 #cantidadProducto,
 #categoriaProducto {
-    max-width: 20%;
+    width: 30%; /* Aumenté el ancho para mejor visibilidad */
 }
 
+/* Título del producto */
 #productTitle {
-    font-size: 25px;
-    position: relative; 
-    top: 50%; 
-    transform: translateX(30%); 
-    margin-top: 10px;
-    margin-bottom: 5px;
+    font-size: 28px; /* Aumenté el tamaño */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 0;
+    color: #333; /* Color oscuro para buen contraste */
 }
 
+/* Texto pequeño */
 .miniTextoProduct {
-    font-size: 10px;
+    font-size: 12px; /* Tamaño ligeramente mayor */
+    color: #777; /* Color gris suave */
 }
 
+/* Contador de descripción */
 #contadorDescripcion {
     display: flex;
     flex-direction: column;
-    justify-content: right;
+    justify-content: flex-end;
+    font-size: 12px;
+    color: #888;
 }
 
+/* Estilo de input tipo file */
 input[type="file"] {
-    padding: 5px;
-    font-size: 14px;
-    color: #24292e;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
+    padding: 8px;
+    font-size: 16px;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     outline: none;
     width: 100%;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Estilo al enfocar el input tipo file */
 input[type="file"]:focus {
     border-color: #0366d6;
+    box-shadow: 0 0 8px rgba(3, 102, 214, 0.3);
+}
+
+/* Agregar un borde suave a los inputs de tipo número */
+input[type="number"] {
+    padding: 8px 14px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     outline: none;
-    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    width: 100%;
+    background-color: #f9f9f9;
+}
+
+/* Fondo para inputs de tipo selección */
+select {
+    padding: 8px 14px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 100%;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilo al enfocar el select */
+select:focus {
+    border-color: #0366d6;
+    box-shadow: 0 0 8px rgba(3, 102, 214, 0.3);
 }

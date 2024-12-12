@@ -5,6 +5,7 @@ import "./globals.css";
 import Footer from "./components/Footer";
 import { AuthProvider } from "./backend/context/AuthContext";
 import './css/bubble.css';
+import { BrowserRouter } from 'react-router-dom';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,7 +32,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <AuthProvider> {/* Envolver toda la aplicación con AuthProvider */}
+     
+        <AuthProvider> 
           <Navbar />
           <div className="bubbles"> 
             <span style={{'--i':11}as React.CSSProperties}></span>
@@ -64,10 +66,12 @@ export default function RootLayout({
             <span style={{'--i':24}as React.CSSProperties}></span>
             <span style={{'--i':15}as React.CSSProperties}></span>
           </div>
-
+          
           <div>{children}</div>
+          <br />
         </AuthProvider>
       </body>
+      
     </html>
   );
 }
