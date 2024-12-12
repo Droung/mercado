@@ -2,7 +2,7 @@ import '../css/address.css'
 import '../css/carrito.css'
 import '../css/bubble.css'
 import Link from 'next/link';
-export default function Address() {
+export default function editAddress() {
     return (
     
         <>

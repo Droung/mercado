@@ -5,10 +5,8 @@ import '../css/bubble.css';
 import '../css/profile.css';
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
-import Link from 'next/link'; // Importamos Link de Next.js
-import {useAuth} from '../backend/context/AuthContext';
-
-
+import Link from 'next/link';
+import { useAuth } from '../backend/context/AuthContext';
 
 export default function Profile() {
   const clientID = '919597223573-bb7q4pknpu77j6toc2i518hnav3jseh3.apps.googleusercontent.com';
@@ -16,11 +14,15 @@ export default function Profile() {
   const [password, setPassword] = useState('');
   const { user, login } = useAuth();
 
-
   useEffect(() => {
     if (user) {
-      alertify.success('Ya has iniciado sesión');
-      window.location.href = '/';
+      if (user.role === 'vendedor') {
+        alertify.success('Bienvenido, vendedor');
+        window.location.href = './vend';
+      } else {
+        alertify.success('Ya has iniciado sesión');
+        window.location.href = '/';
+      }
     }
   }, [user]);
 
@@ -44,23 +46,17 @@ export default function Profile() {
 
       if (res.ok) {
         console.log('Login successful:', data);
-localStorage.setItem('token', data.token);
-login(data.token); // Guardar el token en el contexto
+        localStorage.setItem('token', data.token);
+        login(data); // Guardar los datos del usuario (incluyendo el rol) en el contexto
 
-
-      alertify.success('Inicio de sesión exitoso');
-      window.location.href = '/';
-      
+        alertify.success('Inicio de sesión exitoso');
       } else {
         console.error('Error:', Error);
-      alertify.error('Ocurrió un error al intentar iniciar sesión');
-        
+        alertify.error('Ocurrió un error al intentar iniciar sesión');
       }
     } catch (error) {
       console.error('Error:', error);
-      
     }
-    
   };
 
   return (
@@ -102,7 +98,6 @@ login(data.token); // Guardar el token en el contexto
                   Crear Cuenta
                 </button>
               </Link>
-            
             </div>
           </form>
 
@@ -112,7 +107,5 @@ login(data.token); // Guardar el token en el contexto
         </div>
       </GoogleOAuthProvider>
     </>
-    
   );
- 
 }
