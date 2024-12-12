@@ -1,7 +1,6 @@
 'use client';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import '../css/bubble.css';
 import '../css/profile.css';
 import alertify from 'alertifyjs';
@@ -16,7 +15,7 @@ export default function Profile() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { user, login } = useAuth();
-  const router = useRouter();
+
 
   useEffect(() => {
     if (user) {
@@ -33,33 +32,35 @@ export default function Profile() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ email, password }),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Error en las credenciales');
-      }
+      const data = await res.json();
 
-      const data = await response.json();
+      if (res.ok) {
+        console.log('Login successful:', data);
+localStorage.setItem('token', data.token);
+login(data.token); // Guardar el token en el contexto
+
+
       alertify.success('Inicio de sesión exitoso');
-
-      // Guardar el token en el almacenamiento local
-      localStorage.setItem('token', data.token);
-
-      // Redirección basada en el tipo de usuario
-      if (data.tipoUsuario === 'vendedor') {
-        router.push('/vend');
+      window.location.href = '/';
+      
       } else {
-        router.push('/');
+        console.error('Error:', Error);
+      alertify.error('Ocurrió un error al intentar iniciar sesión');
+        
       }
     } catch (error) {
       console.error('Error:', error);
-      alertify.error('Error al iniciar sesión');
+      
     }
+    
   };
 
   return (

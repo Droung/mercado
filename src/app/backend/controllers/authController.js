@@ -117,8 +117,8 @@ const loginUser = (req, res) => {
       // Generación de token con código de usuario
       const payload = { codigo_usuario: user.codigo_usuario };
       const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-      res.json({ message: 'Inicio de sesión exitoso', token, tipoUsuario: user.tipo });
+      
+      res.json({ message: 'Inicio de sesión exitoso', token });
     } catch (compareErr) {
       console.error('Error al comparar contraseñas:', compareErr);
       return res.status(500).json({ error: 'Error al verificar la contraseña' });
