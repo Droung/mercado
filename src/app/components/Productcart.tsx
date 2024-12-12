@@ -8,15 +8,15 @@ interface ProductCardProps {
 
 const ProductCard = ({ imagen, nombre_articulo, costo }: ProductCardProps) => {
   return (
-    <div className="card">
-     <img
-        src={imagen || '/placeholder.png'} // Usar una imagen de placeholder si no hay imagen
+    <a href="/producto" className="card">
+      <img
+        src={imagen || '/placeholder.png'} 
         alt={nombre_articulo}
         style={{ width: '100%', height: '150px', objectFit: 'cover' }}
       />
       <div className="nombre_articulo">{nombre_articulo}</div>
       <div className="costo">${parseFloat(costo as string).toFixed(2)}</div>
-    </div>
+    </a>
   );
 };
 
