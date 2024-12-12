@@ -11,26 +11,31 @@ const dbConfig = {
 let connection;
 
 function handleDisconnect() {
-  connection = mysql.createConnection(dbConfig);
+  try {
+    connection = mysql.createConnection(dbConfig);
 
-  connection.connect((err) => {
-    if (err) {
-      console.error('Error connecting to MySQL:', err);
-      setTimeout(handleDisconnect, 2000); // Reintentar la conexión después de 2 segundos
-    } else {
-      console.log('Connected to MySQL');
-    }
-  });
+    connection.connect((err) => {
+      if (err) {
+        console.error('Error connecting to MySQL:', err.message);
+        setTimeout(handleDisconnect, 2000); // Reintentar la conexión después de 2 segundos
+      } else {
+        console.log('Connected to MySQL');
+      }
+    });
 
-  connection.on('error', (err) => {
-    console.error('MySQL error:', err);
-    if (err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'ECONNRESET') {
-      console.log('Reconnecting to MySQL...');
-      handleDisconnect();
-    } else {
-      throw err;
-    }
-  });
+    connection.on('error', (err) => {
+      console.error('MySQL error:', err.message);
+      if (err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'ECONNRESET') {
+        console.log('Reconnecting to MySQL...');
+        handleDisconnect();
+      } else {
+        throw err;
+      }
+    });
+  } catch (error) {
+    console.error('Error in handleDisconnect function:', error.message);
+    setTimeout(handleDisconnect, 2000); // Reintentar la conexión en caso de error en el bloque try
+  }
 }
 
 // Iniciar la primera conexión
