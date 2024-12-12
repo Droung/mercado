@@ -2,48 +2,51 @@ pipeline {
     agent any
 
     environment {
-        NODE_VERSION = '20.0.0'  // Define la versión de Node.js que necesites
+        NODE_HOME = '/usr/local/bin/node'  // Asegúrate de que la ruta a Node.js esté correcta en tu servidor.
+        PATH = "${NODE_HOME}:${env.PATH}"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                echo 'Clonando el repositorio...'
-                checkout scm
+                git 'https://github.com/usuario/mercado.git'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                echo 'Instalando dependencias...'
-                sh 'npm install --legacy-peer-deps'
+                script {
+                    sh 'npm install --legacy-peer-deps'
+                }
             }
         }
 
-        stage('Run Linting') {
+        stage('Run Tests') {
             steps {
-                echo 'Ejecutando linting...'
-                sh 'npm run lint || echo "Linting fallido, pero continuando con el despliegue..."'
+                script {
+                    sh 'npm run lint'
+                }
             }
         }
 
         stage('Deploy to Hostinger') {
             steps {
-                echo 'Desplegando a Hostinger...'
-                sh '''
-                # Copia los archivos al servidor de Hostinger usando SCP
-                 scp -P 65002 -o StrictHostKeyChecking=no -r Dockerfile Jenkinsfile README.md next-env.d.ts next.config.ts node_modules package-lock.json package.json postcss.config.mjs public src tailwind.config.ts tsconfig.json u638080153@82.197.80.191:/home/u638080153/public_html
-                '''
+                script {
+                    sh 'scp -P 65002 -o StrictHostKeyChecking=no -r * u638080153@82.197.80.191:/home/u638080153/public_html'
+                }
             }
         }
     }
 
     post {
+        always {
+            cleanWs()
+        }
         success {
-            echo 'Despliegue completado exitosamente.'
+            echo 'Deployment Successful!'
         }
         failure {
-            echo 'Despliegue fallido.'
+            echo 'Deployment Failed!'
         }
     }
 }
