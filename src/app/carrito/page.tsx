@@ -42,7 +42,7 @@ export default function Carrito(){
             <BoxDoc/>
         </div>
         
-        <Link href="/profile/address">
+        <Link href="./address">
         <button className="agregar">Agregar</button>
         </Link>
         
