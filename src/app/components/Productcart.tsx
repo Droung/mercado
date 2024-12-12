@@ -1,17 +1,21 @@
 import '../css/productcart.css';
 
 interface ProductCardProps {
-  image: string;
-  description: string;
-  price: number | string;
+  imagen: string;
+  nombre_articulo: string;
+  costo: number | string;
 }
 
-const ProductCard = ({ image, description, price }: ProductCardProps) => {
+const ProductCard = ({ imagen, nombre_articulo, costo }: ProductCardProps) => {
   return (
     <div className="card">
-      <img src={image} alt="Product" className="image" />
-      <div className="description">{description}</div>
-      <div className="price">${parseFloat(price as string).toFixed(2)}</div>
+     <img
+        src={imagen || '/placeholder.png'} // Usar una imagen de placeholder si no hay imagen
+        alt={nombre_articulo}
+        style={{ width: '100%', height: '150px', objectFit: 'cover' }}
+      />
+      <div className="nombre_articulo">{nombre_articulo}</div>
+      <div className="costo">${parseFloat(costo as string).toFixed(2)}</div>
     </div>
   );
 };

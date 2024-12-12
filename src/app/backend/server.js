@@ -4,7 +4,7 @@ require('dotenv').config();
 const db = require('./config/db'); 
 const authRoutes = require('./routes/authRoutes'); 
 const articlesRoutes = require('./routes/articles');
-const productsRouter = require('./routes/products');
+const productsRoutes = require('./routes/productRoutes');
 const insertArticlesRoutes = require('./routes/articlesRoutes');
 const app = express();
 
@@ -16,8 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 // Rutas
 app.use('/api/auth', authRoutes);
 app.use('/api/articles', articlesRoutes);
-app.use('/api/products', productsRouter);
+app.use('/api', productsRoutes);
 app.use('/api/articles', insertArticlesRoutes);
+
 
 // Endpoint de prueba
 app.get('/', (req, res) => {

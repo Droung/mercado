@@ -26,15 +26,15 @@ const Carousel = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Asegúrate de que la URL sea correcta
-        const response = await fetch('http://localhost:5000/api/products');  
-        
+        const response = await fetch('http://localhost:5000/api/products');
+  
         if (!response.ok) {
           throw new Error('Error al obtener los productos');
         }
-        
+  
         const data = await response.json();
-        const limitedProducts = data.slice(0, 15);  // Limita a 15 productos
+        console.log('Productos recibidos:', data); // Verificar qué datos se reciben
+        const limitedProducts = data.slice(0, 15);
         setProducts(limitedProducts);
       } catch (error) {
         console.error('Error al obtener los productos:', error);
@@ -99,9 +99,9 @@ const Carousel = () => {
         {productGroups[currentCircleIndex]?.map((product, index) => (
           <ProductCard
             key={index}
-            image={product.image} // Ajusta esto según el formato de tu respuesta API
-            description={product.description} // Ajusta esto según el formato de tu respuesta API
-            price={product.price} // Ajusta esto según el formato de tu respuesta API
+            imagen={product.imagen} // Ajusta esto según el formato de tu respuesta API
+            nombre_articulo={product.nombre_articulo} // Ajusta esto según el formato de tu respuesta API
+            costo={product.costo} // Ajusta esto según el formato de tu respuesta API
           />
         ))}
       </div>
