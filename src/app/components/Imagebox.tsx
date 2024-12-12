@@ -12,7 +12,7 @@ interface ImageBoxProps {
 const ImageBox: React.FC<ImageBoxProps> = ({ src, alt, width = 180, height = 180, href }) => {
   const content = (
     <div
-      className="rounded-lg shadow-2xl shadow-md overflow-hidden relative cursor-pointer"
+      className="rounded-lg shadow-2xl shadow-md overflow-hidden relative cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
       style={{ width, height, padding: 0 }}
     >
       {src ? (

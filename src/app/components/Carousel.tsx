@@ -1,52 +1,54 @@
-// components/Carousel.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProductCard from './Productcart';
 
 const Carousel = () => {
-  // Estado para el círculo actual (0, 1, 2)
+
   const [currentCircleIndex, setCurrentCircleIndex] = useState(0);
 
-  // Productos organizados en 3 círculos, cada uno con 5 productos
-  const productGroups = [
-    [
-      { image: '/img/mha.jpg', description: 'Taquito 1', price: 350 },
-      { image: '/img/mha.jpg', description: 'Taquito 2', price: 400 },
-      { image: '/img/mha.jpg', description: 'Taquito 3', price: 450 },
-      { image: '/img/mha.jpg', description: 'Taquito 4', price: 500 },
-      { image: '/img/mha.jpg', description: 'Taquito 5', price: 550 },
-      { image: '/img/mha.jpg', description: 'Taquito 5', price: 550 },
-      { image: '/img/mha.jpg', description: 'Taquito 5', price: 550 },
-    ],
-    [
-      { image: '/img/mha.jpg', description: 'Taquito 1', price: 350 },
-      { image: '/img/mha.jpg', description: 'Taquito 2', price: 400 },
-      { image: '/img/mha.jpg', description: 'Taquito 3', price: 450 },
-      { image: '/img/mha.jpg', description: 'Taquito 4', price: 500 },
-      { image: '/img/mha.jpg', description: 'Taquito 5', price: 550 },
-      { image: '/img/mha.jpg', description: 'Taquito 5', price: 550 },
-      { image: '/img/mha.jpg', description: 'Taquito 5', price: 550 },
-    ],
-    [
-      { image: '/img/mha.jpg', description: 'Taquito 1', price: 350 },
-      { image: '/img/mha.jpg', description: 'Taquito 2', price: 400 },
-      { image: '/img/mha.jpg', description: 'Taquito 3', price: 450 },
-      { image: '/img/mha.jpg', description: 'Taquito 4', price: 500 },
-      { image: '/img/mha.jpg', description: 'Taquito 5', price: 550 },
-      { image: '/img/mha.jpg', description: 'Taquito 5', price: 550 },
-      { image: '/img/mha.jpg', description: 'Taquito 5', price: 550 },
-    ],
-  ];
+  const [products, setProducts] = useState<any[]>([]);
 
-  // Función para navegar a un círculo específico al hacer clic en los puntos
+
+  const groupProducts = (products: any[]) => {
+    const groups = [];
+    for (let i = 0; i < products.length; i += 5) {
+      groups.push(products.slice(i, i + 5));
+    }
+    return groups;
+  };
+
   const goToCircle = (index: number) => {
     setCurrentCircleIndex(index);
   };
 
+  // Cargar los productos desde el backend al montar el componente
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        // Asegúrate de que la URL sea correcta
+        const response = await fetch('http://localhost:5000/api/products');  
+        
+        if (!response.ok) {
+          throw new Error('Error al obtener los productos');
+        }
+        
+        const data = await response.json();
+        const limitedProducts = data.slice(0, 15);  // Limita a 15 productos
+        setProducts(limitedProducts);
+      } catch (error) {
+        console.error('Error al obtener los productos:', error);
+      }
+    };
+  
+    fetchProducts();
+  }, []);
+  // Agrupar los productos en bloques de 5 para el carrusel
+  const productGroups = groupProducts(products);
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '80%', padding: '0 10px' }}>
-      {/* Puntos de navegación entre los 3 círculos (Arriba a la derecha) */}
+      {/* Puntos de navegación entre los círculos */}
       <div
         style={{
           marginBottom: '20px',
@@ -61,7 +63,7 @@ const Carousel = () => {
           style={{
             position: 'absolute',
             top: '0px',
-            right: '10px', // Ubica los puntos a la derecha
+            right: '10px',
             display: 'flex',
             gap: '10px',
           }}
@@ -82,7 +84,7 @@ const Carousel = () => {
         </div>
       </div>
 
-      {/* Mostrar los 5 productos del círculo actual */}
+      {/* Mostrar los productos del círculo actual */}
       <div
         style={{
           display: 'flex',
@@ -91,15 +93,15 @@ const Carousel = () => {
           maxWidth: '1500px',
           marginBottom: '0px',
           overflowX: 'auto',
-          gap: '5px', // Espacio entre las cartas
+          gap: '5px',
         }}
       >
-        {productGroups[currentCircleIndex].map((product, index) => (
+        {productGroups[currentCircleIndex]?.map((product, index) => (
           <ProductCard
             key={index}
-            image={product.image}
-            description={product.description}
-            price={product.price}
+            image={product.image} // Ajusta esto según el formato de tu respuesta API
+            description={product.description} // Ajusta esto según el formato de tu respuesta API
+            price={product.price} // Ajusta esto según el formato de tu respuesta API
           />
         ))}
       </div>
