@@ -15,6 +15,7 @@ export default function Profile() {
   const { user, login } = useAuth();
 
   useEffect(() => {
+<<<<<<< HEAD
     if (user) {
       if (user.role === 'vendedor') {
         alertify.success('Bienvenido, vendedor');
@@ -24,6 +25,9 @@ export default function Profile() {
         window.location.href = '/';
       }
     }
+=======
+   
+>>>>>>> f9439d12d49d3f0a888b179fb1039d64dd61b5e5
   }, [user]);
 
   const onSuccess = (response: any) => {
@@ -47,6 +51,7 @@ export default function Profile() {
       if (res.ok) {
         console.log('Login successful:', data);
         localStorage.setItem('token', data.token);
+<<<<<<< HEAD
         login(data); // Guardar los datos del usuario (incluyendo el rol) en el contexto
 
         alertify.success('Inicio de sesión exitoso');
@@ -56,6 +61,25 @@ export default function Profile() {
       }
     } catch (error) {
       console.error('Error:', error);
+=======
+        login(data.token); // Guardar el token en el contexto
+
+        alertify.success('Inicio de sesión exitoso');
+
+        // Redirigir según el tipo de usuario
+        if (data.tipoUsuario === 'vendedor') {
+          window.location.href = '/vend';
+        } else {
+          window.location.href = '/';
+        }
+      } else {
+        console.error('Error:', data.error);
+        alertify.error(data.error || 'Ocurrió un error al intentar iniciar sesión');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alertify.error('Error del servidor');
+>>>>>>> f9439d12d49d3f0a888b179fb1039d64dd61b5e5
     }
   };
 
@@ -93,7 +117,7 @@ export default function Profile() {
                 Iniciar Sesión
               </button>
 
-              <Link href="/createuser" className='btn-create'>
+              <Link href="/createuser">
                 <button type="button" className="btn-create">
                   Crear Cuenta
                 </button>
